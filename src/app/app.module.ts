@@ -8,6 +8,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { BookingComponent } from './booking/booking.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { MyBookingsComponent } from './my-bookings/my-bookings.component';
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import { BookingComponent } from './booking/booking.component';
     AppComponent,
     LoginComponent,
     UserDashboardComponent,
-    BookingComponent
+    BookingComponent,
+    NavbarComponent,
+    MyBookingsComponent
   ],
   imports: [
     BrowserModule,

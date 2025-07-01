@@ -37,6 +37,9 @@ export class LoginComponent {
   }
 }*/
 
+ngOnInit(): void {
+  localStorage.clear(); // Clear any existing token
+}
 
 
 login(): void {
@@ -49,6 +52,21 @@ login(): void {
       const decoded: any = jwtDecode(res.token);
       localStorage.setItem('userId', decoded.userId);  // Or 'sub', depends on your token claims
       localStorage.setItem('role', decoded.role);
+      
+      const token = localStorage.getItem('jwtToken');
+
+if (token) {
+  const decoded: any = jwtDecode(token);
+  localStorage.setItem('userId', decoded.sub); // or decoded.userId, based on your token
+  localStorage.setItem('role', decoded.role);
+  console.error('----------Token found in localStorage-----');
+  console.error(localStorage.getItem('userId'));
+} else {
+  console.error('Token not found in localStorage');
+}
+
+
+      
 
       // Redirect
       this.router.navigate(['/dashboard']);
