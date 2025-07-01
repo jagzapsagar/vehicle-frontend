@@ -7,14 +7,14 @@ import { Observable } from 'rxjs';
 })
 export class BookingService {
 
-  private baseUrl = 'http://localhost:8081/booking/user/'; // change if your backend is different
+  private baseUrl = 'http://localhost:8081/booking'; // change if your backend is different
 
   constructor(private http: HttpClient) {}
 
-  // Get bookings for a user
+
   getBookingsByUser(userId: number): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}${userId}`);
-  }
+  return this.http.get<any[]>(`${this.baseUrl}/user/${userId}`);
+}
 
   // Cancel a booking
   cancelBooking(bookingId: number): Observable<any> {

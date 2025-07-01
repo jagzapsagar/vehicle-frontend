@@ -8,11 +8,12 @@ import { BookingService } from '../core/services/booking.service';
 })
 export class MyBookingsComponent implements OnInit {
   bookings: any[] = [];
-  userId = Number(localStorage.getItem('userId')); // assuming you store this after login
+   userId: number = 12;
+  //userId = Number(localStorage.getItem('userId')); // assuming you store this after login
 
   constructor(private bookingService: BookingService) {}
 
-ngOnInit(): void {
+/*ngOnInit(): void {
   const storedId = localStorage.getItem('userId');
 
   if (storedId && !isNaN(Number(storedId))) {
@@ -21,15 +22,31 @@ ngOnInit(): void {
   } else {
     console.error('Invalid or missing userId in localStorage');
   }
-}
+}*/
+ngOnInit(): void {
+    this.loadBookings();
+  }
 
-loadBookings(): void {
-  this.bookingService.getBookingsByUser(this.userId).subscribe({
+
+/*loadBookings(): void {
+  //this.bookingService.getBookingsByUser(this.userId).subscribe({
+    this.bookingService.getBookingsByUser().subscribe({
     next: (data) => this.bookings = data,
     error: (err) => console.error('Failed to load bookings', err)
   });
 }
-
+*/
+loadBookings(): void {
+    this.bookingService.getBookingsByUser(this.userId).subscribe({
+      next: (data) => {
+        this.bookings = data;
+        console.log('Bookings fetched:', this.bookings);
+      },
+      error: (err) => {
+        console.error('Failed to load bookings', err);
+      }
+    });
+  }
 
   cancelBooking(id: number): void {
     if (confirm('Cancel this booking?')) {
