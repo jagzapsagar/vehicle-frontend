@@ -1,0 +1,21 @@
+<div class="dashboard-container">
+  <h2>Available Vehicles</h2>
+
+  <div *ngIf="vehicles.length === 0">No vehicles available.</div>
+
+  <div class="vehicle-card" *ngFor="let v of vehicles">
+    <h4>{{ v.brand }} {{ v.model }}</h4>
+    <p>Type: {{ v.type }}</p>
+    <p>Price per Day: ₹{{ v.pricePerDay }}</p>
+    <p>Status:
+      <span [ngClass]="v.available ? 'available' : 'not-available'">
+        {{ v.available ? 'Available' : 'Not Available' }}
+      </span>
+    </p>
+    <button 
+  [disabled]="!v.available" 
+  [routerLink]="['/book', v.id]">
+  Book Now
+</button>
+  </div>
+</div>

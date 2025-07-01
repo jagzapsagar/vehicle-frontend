@@ -1,0 +1,24 @@
+<div class="container mt-5">
+  <div class="card shadow-lg">
+    <div class="card-header bg-primary text-white">
+      <h3 class="mb-0">Booking Vehicle</h3>
+    </div>
+    <div class="card-body" *ngIf="vehicle">
+      <h5 class="card-title">{{ vehicle.brand }} {{ vehicle.model }}</h5>
+      <p><strong>Type:</strong> {{ vehicle.type }}</p>
+      <p><strong>Price per Day:</strong> ₹{{ vehicle.pricePerDay }}</p>
+
+      <div class="mb-3">
+        <label for="startDate" class="form-label">Start Date</label>
+        <input type="date" id="startDate" class="form-control" [(ngModel)]="startDate" name="startDate" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="endDate" class="form-label">End Date</label>
+        <input type="date" id="endDate" class="form-control" [(ngModel)]="endDate" name="endDate" required>
+      </div>
+
+      <button class="btn btn-success" (click)="submitBooking()">Confirm Booking</button>
+    </div>
+  </div>
+</div>
