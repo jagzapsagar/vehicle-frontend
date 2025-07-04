@@ -29,5 +29,10 @@ export class BookingService {
   return this.http.get<any>(`http://localhost:8081/booking?page=${page}&size=${size}`);
 }
 
+getBookingCount(): Observable<number> {
+  return this.http.get<number>('http://localhost:8081/booking/count');
+}
+
+
 }
 

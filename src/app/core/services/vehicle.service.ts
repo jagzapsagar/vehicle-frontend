@@ -31,9 +31,15 @@ export class VehicleService {
     return this.http.delete(`http://localhost:8082/vehicles/delete/${id}`, { responseType: 'text' });
   }
 
-  updateVehicle(id: number, vehicleData: Vehicle): Observable<any> {
-    return this.http.put(`${this.baseUrl}/update/${id}`, vehicleData);
-  }
+  // vehicle.service.ts
+updateVehicle(id: number, updatedData: any): Observable<any> {
+  return this.http.put(`http://localhost:8082/vehicles/${id}`, updatedData);
+}
+
+getVehicleCount(): Observable<number> {
+  return this.http.get<number>('http://localhost:8082/vehicles/count');
+}
+
 
 
 

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { VehicleService } from '../core/services/vehicle.service';
 import { Vehicle } from '../models/vehicle.model';
+import { Modal } from 'bootstrap';
+
 
 @Component({
   selector: 'app-admin-manage-vehicles',
@@ -51,18 +53,38 @@ openEditModal(vehicle: any): void {
 }
 
 
+
+
+
 updateVehicle(): void {
-  this.vehicleService.updateVehicle(this.selectedVehicle.id, this.selectedVehicle).subscribe({
+  const updatePayload = {
+    brand: this.selectedVehicle.brand,
+    model: this.selectedVehicle.model,
+    type: this.selectedVehicle.type,
+    pricePerDay: this.selectedVehicle.pricePerDay
+  };
+
+  this.vehicleService.updateVehicle(this.selectedVehicle.id, updatePayload).subscribe({
     next: () => {
       alert('Vehicle updated successfully!');
-      this.loadVehicles();
+      this.loadVehicles();  // Refresh the vehicle list
+
+      // ✅ Close the modal
+      const modalEl = document.getElementById('updateVehicleModal');
+      if (modalEl) {
+        const modal = Modal.getInstance(modalEl) || new Modal(modalEl);
+        modal.hide();
+      }
     },
-    error: (err) => {
-      console.error('Update error:', err);
-      alert('Failed to update vehicle');
+    error: err => {
+      console.error('Failed to update vehicle:', err);
+      alert('Update failed!');
     }
   });
 }
+
+
+
 
 
 
