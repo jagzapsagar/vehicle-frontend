@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BookingService } from '../core/services/booking.service';
+import { UserService } from '../core/services/user.service';
+import { jwtDecode } from 'jwt-decode';
+
 
 @Component({
   selector: 'app-my-bookings',
@@ -8,35 +11,38 @@ import { BookingService } from '../core/services/booking.service';
 })
 export class MyBookingsComponent implements OnInit {
   bookings: any[] = [];
-   userId: number = 12;
-  //userId = Number(localStorage.getItem('userId')); // assuming you store this after login
+  userId: number = 0;
 
-  constructor(private bookingService: BookingService) {}
+  constructor(
+    private bookingService: BookingService,
+    private userService: UserService
+  ) {}
 
-/*ngOnInit(): void {
-  const storedId = localStorage.getItem('userId');
-
-  if (storedId && !isNaN(Number(storedId))) {
-    this.userId = Number(storedId);
-    this.loadBookings();
-  } else {
-    console.error('Invalid or missing userId in localStorage');
+  ngOnInit(): void {
+    const email = this.getEmailFromToken();
+    if (email) {
+      this.userService.getUserIdByEmail(email).subscribe({
+        next: (id) => {
+          this.userId = id;
+          this.loadBookings();  // Now that we have userId, load bookings
+        },
+        error: (err) => {
+          console.error('Failed to fetch userId:', err);
+        }
+      });
+    } else {
+      console.error('Email not found in token');
+    }
   }
-}*/
-ngOnInit(): void {
-    this.loadBookings();
+
+  getEmailFromToken(): string | null {
+    const token = localStorage.getItem('jwtToken');
+    if (!token) return null;
+    const decoded: any = jwtDecode(token);
+    return decoded?.sub || decoded?.email || null;
   }
 
-
-/*loadBookings(): void {
-  //this.bookingService.getBookingsByUser(this.userId).subscribe({
-    this.bookingService.getBookingsByUser().subscribe({
-    next: (data) => this.bookings = data,
-    error: (err) => console.error('Failed to load bookings', err)
-  });
-}
-*/
-loadBookings(): void {
+  loadBookings(): void {
     this.bookingService.getBookingsByUser(this.userId).subscribe({
       next: (data) => {
         this.bookings = data;
@@ -53,7 +59,7 @@ loadBookings(): void {
       this.bookingService.cancelBooking(id).subscribe({
         next: () => {
           alert('Booking canceled');
-          this.loadBookings(); // reload updated list
+          this.loadBookings();
         },
         error: () => alert('Failed to cancel booking')
       });
