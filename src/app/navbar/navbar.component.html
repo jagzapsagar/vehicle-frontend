@@ -1,19 +1,43 @@
-<nav *ngIf="isLoggedIn" class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" routerLink="/">Vehicle Rental</a>
 
     <div class="collapse navbar-collapse">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <!-- USER NAV LINKS -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="isLoggedIn && !isAdmin">
         <li class="nav-item">
-          
-          <a class="nav-link" routerLink="/dashboard">Dashboard</a>
+          <a class="nav-link" routerLink="/user-dashboard">Dashboard</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/my-bookings">My Bookings</a>
         </li>
       </ul>
 
-      <button class="btn btn-outline-light btn-sm" (click)="logout()">Logout</button>
+      <!-- ADMIN NAV LINKS -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="isLoggedIn && isAdmin">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/admin-dashboard">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/admin-vehicles">Manage Vehicles</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/admin-bookings">View Bookings</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/admin-users">Users</a>
+        </li>
+      </ul>
+
+      <!-- RIGHT SIDE BUTTONS -->
+      <div class="ms-auto d-flex align-items-center">
+        <ng-container *ngIf="!isLoggedIn && isLoginPage">
+          <button class="btn btn-outline-light btn-sm me-2" routerLink="/admin-login">Admin Login</button>
+          <button class="btn btn-outline-light btn-sm me-2" routerLink="/signup">User Sign Up</button>
+        </ng-container>
+
+        <button *ngIf="isLoggedIn" class="btn btn-outline-danger btn-sm" (click)="logout()">Logout</button>
+      </div>
     </div>
   </div>
 </nav>

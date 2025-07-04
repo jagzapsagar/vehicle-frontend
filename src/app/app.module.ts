@@ -10,6 +10,11 @@ import { UserDashboardComponent } from './user-dashboard/user-dashboard.componen
 import { BookingComponent } from './booking/booking.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MyBookingsComponent } from './my-bookings/my-bookings.component';
+import { UserSignupComponent } from './user-signup/user-signup.component';
+import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { AdminBookingsComponent } from './admin-bookings/admin-bookings.component';
+import { AdminManageVehiclesComponent } from './admin-manage-vehicles/admin-manage-vehicles.component';
 
 
 @NgModule({
@@ -19,7 +24,12 @@ import { MyBookingsComponent } from './my-bookings/my-bookings.component';
     UserDashboardComponent,
     BookingComponent,
     NavbarComponent,
-    MyBookingsComponent
+    MyBookingsComponent,
+    UserSignupComponent,
+    AdminLoginComponent,
+    AdminDashboardComponent,
+    AdminBookingsComponent,
+    AdminManageVehiclesComponent
   ],
   imports: [
     BrowserModule,

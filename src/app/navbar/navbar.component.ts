@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -7,15 +7,32 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
-  constructor(private router: Router) {}
+  currentUrl: string = '';
+
+  constructor(private router: Router) {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.currentUrl = event.urlAfterRedirects;
+      }
+    });
+  }
 
   logout(): void {
     localStorage.clear();
     this.router.navigate(['/login']);
   }
+
   get isLoggedIn(): boolean {
-  return !!localStorage.getItem('jwtToken');
+    return !!localStorage.getItem('jwtToken');
+  }
+
+  get isLoginPage(): boolean {
+    return this.currentUrl === '/login';
+  }
+
+  get isAdmin(): boolean {
+  const role = localStorage.getItem('role');
+  return role === 'ADMIN';
 }
 
 }
-

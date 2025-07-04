@@ -12,6 +12,7 @@ import { jwtDecode } from 'jwt-decode';
 export class LoginComponent {
   email = '';
   password = '';
+  
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -40,6 +41,15 @@ export class LoginComponent {
 ngOnInit(): void {
   localStorage.clear(); // Clear any existing token
 }
+
+goToAdminLogin(): void {
+  this.router.navigate(['/admin-login']);
+}
+
+goToSignup(): void {
+  this.router.navigate(['/signup']);
+}
+
 
 
 login(): void {

@@ -1,0 +1,19 @@
+.table th, .table td {
+  vertical-align: middle;
+}
+
+.card {
+  border-radius: 12px;
+  background: linear-gradient(145deg, #ffffff, #f0f0f0);
+}
+
+.booking-title {
+  font-size: 2rem;
+  font-weight: bold;
+  background: linear-gradient(to right, #007bff, #00c6ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 8px;
+}

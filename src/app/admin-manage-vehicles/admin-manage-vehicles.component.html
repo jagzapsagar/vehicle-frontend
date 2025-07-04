@@ -1,0 +1,101 @@
+<div class="container mt-5">
+  <div class="card shadow p-4">
+    <h3 class="text-center text-primary mb-4">🚗 Manage Vehicles</h3>
+
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover text-center align-middle">
+        <thead class="table-dark">
+          <tr>
+            <th>ID</th>
+            <th>Brand</th>
+            <th>Model</th>
+            <th>Type</th>
+            <th>Price/Day</th>
+            <th>Availability</th>
+            <th>Actions</th> <!-- New column for actions -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let v of vehicles">
+            <td>{{ v.id }}</td>
+            <td>{{ v.brand }}</td>
+            <td>{{ v.model }}</td>
+            <td>{{ v.type }}</td>
+            <td>₹{{ v.pricePerDay }}</td>
+            <td>
+              <span class="badge"
+                    [ngClass]="{
+                      'bg-success': v.available,
+                      'bg-danger': !v.available
+                    }">
+                {{ v.available ? 'Available' : 'Not Available' }}
+              </span>
+            </td>
+            <td>
+             
+              
+<button
+  class="btn btn-warning btn-sm"
+  (click)="openEditModal(v)"
+  data-bs-toggle="modal"
+  data-bs-target="#editVehicleModal"
+>
+  Edit
+</button>
+
+              <button class="btn btn-sm btn-outline-danger" (click)="deleteVehicle(v.id)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="editVehicleModal" tabindex="-1" aria-labelledby="editVehicleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="editVehicleModalLabel">Edit Vehicle</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label>Brand</label>
+            <input [(ngModel)]="selectedVehicle.brand" name="brand" class="form-control" />
+          </div>
+          <div class="mb-3">
+            <label>Model</label>
+            <input [(ngModel)]="selectedVehicle.model" name="model" class="form-control" />
+          </div>
+          <div class="mb-3">
+            <label>Type</label>
+            <input [(ngModel)]="selectedVehicle.type" name="type" class="form-control" />
+          </div>
+          <div class="mb-3">
+            <label>Price Per Day</label>
+            <input type="number" [(ngModel)]="selectedVehicle.pricePerDay" name="pricePerDay" class="form-control" />
+          </div>
+          <div class="mb-3">
+            <label>Available</label>
+            <select [(ngModel)]="selectedVehicle.available" name="available" class="form-select">
+              <option [ngValue]="true">Available</option>
+              <option [ngValue]="false">Not Available</option>
+            </select>
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="updateVehicle()">Save Changes</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+

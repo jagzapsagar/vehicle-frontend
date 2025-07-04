@@ -46,3 +46,44 @@ button {
 button:hover {
   background-color: #0056b3;
 }
+
+/* login.component.css */
+
+/* login.component.css */
+
+/* login.component.css */
+
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.login-background {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 10px;
+}
+
+.vehicle-emoji {
+  position: absolute;
+  top: 10px;
+  left: 15px;
+  font-size: 30px;
+}
+
+.login-background {
+  padding-top: 0;
+  margin-top: 0;
+}
+
+
+
+
