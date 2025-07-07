@@ -28,15 +28,14 @@ export class BookingService {
   });
 }
 
+
+
 cancelBooking(id: number): Observable<any> {
-  const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-  console.log('-----------JWT Token:', token);
-  return this.http.delete(`http://localhost:8081/booking/cancel/${id}`, {
-    headers: headers,
-    responseType: 'text' // if your backend returns a plain string
+  return this.http.put(`http://localhost:8081/booking/cancel/${id}`, {
+    responseType: 'text' as 'json'
   });
 }
+
 
 
 
