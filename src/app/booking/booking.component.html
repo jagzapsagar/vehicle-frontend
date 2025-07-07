@@ -19,12 +19,12 @@
 
         <div class="mb-3">
           <label for="startDate" class="form-label">Start Date</label>
-          <input type="date" id="startDate" class="form-control" [(ngModel)]="startDate" name="startDate" required>
+          <input type="date" id="startDate" class="form-control" [(ngModel)]="startDate" name="startDate" [min]="today" required>
         </div>
 
         <div class="mb-3">
           <label for="endDate" class="form-label">End Date</label>
-          <input type="date" id="endDate" class="form-control" [(ngModel)]="endDate" name="endDate" required>
+          <input type="date" id="endDate" class="form-control" [(ngModel)]="endDate" name="endDate" [min]="startDate || today"  required>
         </div>
 
         <button class="btn btn-success" (click)="submitBooking()">Confirm Booking</button>

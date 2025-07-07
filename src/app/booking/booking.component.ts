@@ -17,7 +17,9 @@ export class BookingComponent implements OnInit {
   vehicle?: Vehicle;
   startDate: string = '';
   endDate: string = '';
-  userId: number = 0; // will be set dynamically
+  userId: number = 0; 
+
+  today: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -27,9 +29,12 @@ export class BookingComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    
     this.vehicleId = Number(this.route.snapshot.paramMap.get('id'));
     this.loadVehicle();
     this.setUserIdFromToken(); // Fetch userId from email in token
+    const now = new Date();
+    this.today = now.toISOString().split('T')[0]; // 'YYYY-MM-DD'
   }
 
   loadVehicle(): void {
