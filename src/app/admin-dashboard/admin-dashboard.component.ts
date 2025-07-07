@@ -29,6 +29,11 @@ export class AdminDashboardComponent implements OnInit {
   this.router.navigate(['/manage-vehicles']);
 }
 
+goToManageUsers(): void {
+  this.router.navigate(['/admin-users']);
+}
+
+
 loadCounts(): void {
   this.vehicleService.getVehicleCount().subscribe({
     next: (count) => this.totalVehicles = count,

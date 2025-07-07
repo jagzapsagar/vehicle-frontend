@@ -9,6 +9,7 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { AdminBookingsComponent } from './admin-bookings/admin-bookings.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { AdminManageVehiclesComponent } from './admin-manage-vehicles/admin-manage-vehicles.component';
+import { AdminManageUsersComponent } from './admin-manage-users/admin-manage-users.component';
 
 
 
@@ -24,7 +25,9 @@ const routes: Routes = [
   { path: 'signup', component: UserSignupComponent },
   { path: 'admin-dashboard', component: AdminDashboardComponent },
   { path: 'admin-bookings', component: AdminBookingsComponent },
-  { path: 'manage-vehicles', component: AdminManageVehiclesComponent }
+  { path: 'manage-vehicles', component: AdminManageVehiclesComponent },
+  { path: 'admin-users', component: AdminManageUsersComponent }
+
 
 
 

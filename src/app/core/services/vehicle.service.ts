@@ -23,6 +23,11 @@ export class VehicleService {
   return this.http.get<Vehicle>(`http://localhost:8082/vehicles/${id}`);
 }
 
+deleteUser(userId: number): Observable<any> {
+  return this.http.delete(`http://localhost:8083/users/${userId}`, { responseType: 'text' });
+}
+
+
 //deleteVehicle(id: number): Observable<any> {
  // return this.http.delete(`http://localhost:8082/vehicles/delete/${id}`);
 //}
