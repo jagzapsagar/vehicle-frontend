@@ -1,0 +1,47 @@
+<div class="container mt-5 d-flex justify-content-center">
+  <div class="card shadow p-4" style="width: 100%; max-width: 600px;">
+    <div class="card-header bg-success text-white text-center">
+      <h4>Add New Vehicle</h4>
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="addVehicle()">
+        <div class="mb-3">
+          <label>Brand</label>
+          <input [(ngModel)]="vehicle.brand" name="brand" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+          <label>Model</label>
+          <input [(ngModel)]="vehicle.model" name="model" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+          <label>Type</label>
+          <input [(ngModel)]="vehicle.type" name="type" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+          <label>Price Per Day</label>
+          <input type="number" [(ngModel)]="vehicle.pricePerDay" name="pricePerDay" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+          <label>Image URL</label>
+          <input [(ngModel)]="vehicle.imageUrl" name="imageUrl" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+          <label>Available</label>
+          <select [(ngModel)]="vehicle.available" name="available" class="form-select">
+            <option [ngValue]="true">Available</option>
+            <option [ngValue]="false">Not Available</option>
+          </select>
+        </div>
+
+        <div class="text-center">
+          <button class="btn btn-success" type="submit">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

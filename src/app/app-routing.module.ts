@@ -10,6 +10,8 @@ import { AdminBookingsComponent } from './admin-bookings/admin-bookings.componen
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { AdminManageVehiclesComponent } from './admin-manage-vehicles/admin-manage-vehicles.component';
 import { AdminManageUsersComponent } from './admin-manage-users/admin-manage-users.component';
+import { AdminAddVehicleComponent } from './admin-add-vehicle/admin-add-vehicle.component';
+
 
 
 
@@ -26,7 +28,9 @@ const routes: Routes = [
   { path: 'admin-dashboard', component: AdminDashboardComponent },
   { path: 'admin-bookings', component: AdminBookingsComponent },
   { path: 'manage-vehicles', component: AdminManageVehiclesComponent },
-  { path: 'admin-users', component: AdminManageUsersComponent }
+  { path: 'admin-users', component: AdminManageUsersComponent },
+  { path: 'add-vehicle', component: AdminAddVehicleComponent }
+
 
 
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { VehicleService } from '../core/services/vehicle.service';
 import { Vehicle } from '../models/vehicle.model';
 import { Modal } from 'bootstrap';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { Modal } from 'bootstrap';
 export class AdminManageVehiclesComponent implements OnInit {
   vehicles: Vehicle[] = [];
   
-    constructor(private vehicleService: VehicleService) {}
+    constructor(private vehicleService: VehicleService,private router: Router) {}
   
     ngOnInit(): void {
       this.loadVehicles();
@@ -53,9 +54,6 @@ openEditModal(vehicle: any): void {
 }
 
 
-
-
-
 updateVehicle(): void {
   const updatePayload = {
     brand: this.selectedVehicle.brand,
@@ -84,6 +82,9 @@ updateVehicle(): void {
 }
 
 
+goToAddVehicle(): void {
+  this.router.navigate(['/add-vehicle']);
+}
 
 
 

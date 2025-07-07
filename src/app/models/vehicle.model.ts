@@ -5,5 +5,6 @@ export interface Vehicle {
   type: string;
   pricePerDay: number;
   available: boolean;
+  imageUrl: string;
   }
   

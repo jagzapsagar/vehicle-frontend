@@ -16,6 +16,7 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { AdminBookingsComponent } from './admin-bookings/admin-bookings.component';
 import { AdminManageVehiclesComponent } from './admin-manage-vehicles/admin-manage-vehicles.component';
 import { AdminManageUsersComponent } from './admin-manage-users/admin-manage-users.component';
+import { AdminAddVehicleComponent } from './admin-add-vehicle/admin-add-vehicle.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { AdminManageUsersComponent } from './admin-manage-users/admin-manage-use
     AdminDashboardComponent,
     AdminBookingsComponent,
     AdminManageVehiclesComponent,
-    AdminManageUsersComponent
+    AdminManageUsersComponent,
+    AdminAddVehicleComponent
   ],
   imports: [
     BrowserModule,
