@@ -59,17 +59,21 @@ body, html {
   font-family: Arial, sans-serif;
 }
 
+
+
+.card {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 10px;
+}
+
+
+
 .login-background {
   background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.card {
-  background-color: rgba(255, 255, 255, 0.95);
-  border-radius: 10px;
 }
 
 .vehicle-emoji {
@@ -83,6 +87,19 @@ body, html {
   padding-top: 0;
   margin-top: 0;
 }
+
+
+.login-background {
+  background-color: #f0f4f8;
+}
+
+.vehicle-emoji {
+  position: absolute;
+  top: -25px;
+  left: 20px;
+  font-size: 2rem;
+}
+
 
 
 

@@ -1,9 +1,18 @@
 <div class="login-background">
   <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center align-items-center min-vh-100">
+      
+      <!-- Left Side: Image -->
+      <div class="col-md-6 d-none d-md-block">
+        <img src="https://images.vexels.com/media/users/3/136707/isolated/preview/3a20d6de9118e58ff0b288824fe78413-rent-car-key-tag.png" 
+             alt="Vehicle Rental" 
+             class="img-fluid rounded shadow" />
+      </div>
+
+      <!-- Right Side: Login Card -->
       <div class="col-md-5">
         <div class="card shadow-lg p-4 position-relative">
-          <span class="vehicle-emoji">🚗</span>
+          <span class="vehicle-emoji"></span>
           <div class="card-body">
             <h4 class="card-title text-center mb-4">Login</h4>
 
@@ -17,11 +26,10 @@
             </div>
 
             <button (click)="login()" class="btn btn-primary w-100">Login</button>
-
-            
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </div>
