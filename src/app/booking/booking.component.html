@@ -7,7 +7,7 @@
         <img [src]="vehicle.imageUrl" alt="Vehicle Image" class="img-fluid rounded" style="max-height: 300px;">
       </div>
 
-      <!-- Vehicle Details and Booking Form -->
+      <!-- Vehicle Details and Booking Summary -->
       <div class="col-md-7">
         <div class="card-header bg-primary text-white mb-3 rounded">
           <h4 class="mb-0">Booking Vehicle</h4>
@@ -17,15 +17,10 @@
         <p><strong>Type:</strong> {{ vehicle.type }}</p>
         <p><strong>Price per Day:</strong> ₹{{ vehicle.pricePerDay }}</p>
 
-        <div class="mb-3">
-          <label for="startDate" class="form-label">Start Date</label>
-          <input type="date" id="startDate" class="form-control" [(ngModel)]="startDate" name="startDate" [min]="today" required>
-        </div>
-
-        <div class="mb-3">
-          <label for="endDate" class="form-label">End Date</label>
-          <input type="date" id="endDate" class="form-control" [(ngModel)]="endDate" name="endDate" [min]="startDate || today"  required>
-        </div>
+        <!-- Show selected dates instead of allowing input -->
+        <p><strong>Start Date:</strong> {{ startDate }}</p>
+        <p><strong>End Date:</strong> {{ endDate }}</p>
+        <p *ngIf="totalPrice > 0"><strong>Total Price:</strong> ₹{{ totalPrice.toFixed(2) }}</p>
 
         <button class="btn btn-success" (click)="submitBooking()">Confirm Booking</button>
       </div>

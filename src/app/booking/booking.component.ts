@@ -18,6 +18,7 @@ export class BookingComponent implements OnInit {
   startDate: string = '';
   endDate: string = '';
   userId: number = 0; 
+  totalPrice: number=0;
 
   today: string = '';
 
@@ -31,18 +32,42 @@ export class BookingComponent implements OnInit {
   ngOnInit(): void {
     
     this.vehicleId = Number(this.route.snapshot.paramMap.get('id'));
+    this.route.queryParams.subscribe(params => {
+    this.startDate = params['startDate'] || '';
+    this.endDate = params['endDate'] || '';
+    this.calculateTotalPrice();
+  });
     this.loadVehicle();
     this.setUserIdFromToken(); // Fetch userId from email in token
     const now = new Date();
     this.today = now.toISOString().split('T')[0]; // 'YYYY-MM-DD'
   }
 
-  loadVehicle(): void {
-    this.vehicleService.getById(this.vehicleId).subscribe({
-      next: (data) => this.vehicle = data,
-      error: (err) => console.error('Error loading vehicle:', err)
-    });
+loadVehicle(): void {
+  this.vehicleService.getById(this.vehicleId).subscribe({
+    next: (data) => {
+      this.vehicle = data;
+      this.calculateTotalPrice(); // call after vehicle is loaded
+    },
+    error: (err) => console.error('Error loading vehicle:', err)
+  });
+}
+
+  calculateTotalPrice(): void {
+  if (this.startDate && this.endDate && this.vehicle?.pricePerDay) {
+    const start = new Date(this.startDate);
+    const end = new Date(this.endDate);
+    const timeDiff = end.getTime() - start.getTime();
+    const days = Math.ceil(timeDiff / (1000 * 3600 * 24)) + 1;
+
+    if (days > 0) {
+      this.totalPrice = days * this.vehicle.pricePerDay;
+    } else {
+      this.totalPrice = 0;
+    }
   }
+}
+
 
   setUserIdFromToken(): void {
     const token = localStorage.getItem('jwtToken');

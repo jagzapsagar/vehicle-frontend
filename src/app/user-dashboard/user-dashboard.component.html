@@ -1,40 +1,42 @@
-<div class="dashboard-container">
-  <h2 class="mb-4">Available Vehicles</h2>
+<div class="container mt-4">
+  <h3 class="mb-4">🚗 Check Available Vehicles</h3>
 
-  <div *ngIf="vehicles.length === 0" class="text-muted">No vehicles available.</div>
+  <div class="row g-3 mb-4">
+    <div class="col-md-6">
+      <label for="startDate" class="form-label">Start Date</label>
+      <input type="date" id="startDate" class="form-control" [(ngModel)]="startDate" [min]="today" (change)="onDateRangeChange()">
+    </div>
 
-  <div class="card mb-4 shadow-sm" *ngFor="let v of vehicles">
-    <div class="row g-0">
-      
-      <!-- Vehicle Info Left Side -->
-      <div class="col-md-6 p-4">
-        <h4>{{ v.brand }} {{ v.model }}</h4>
-        <p><strong>Type:</strong> {{ v.type }}</p>
-        <p><strong>Price per Day:</strong> ₹{{ v.pricePerDay }}</p>
-        <p>
-          <strong>Status:</strong>
-          <span [ngClass]="v.available ? 'text-success' : 'text-danger'">
-            {{ v.available ? 'Available' : 'Not Available' }}
-          </span>
-        </p>
-        <button 
-          [disabled]="!v.available" 
-          [routerLink]="['/book', v.id]"
-          class="btn btn-primary mt-2">
-          Book Now
-        </button>
-      </div>
+    <div class="col-md-6">
+      <label for="endDate" class="form-label">End Date</label>
+      <input type="date" id="endDate" class="form-control" [(ngModel)]="endDate" [min]="startDate" (change)="onDateRangeChange()">
+    </div>
+  </div>
 
-      <!-- Image Right Side -->
-      <div class="col-md-6">
-        <img 
-          *ngIf="v.imageUrl" 
-          [src]="v.imageUrl" 
-          class="img-fluid rounded-end w-100 h-100 object-fit-cover"
-          alt="Vehicle Image" 
-          style="max-height: 250px;"
-        />
+  <div *ngIf="vehicles.length > 0; else noResults">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+      <div class="col" *ngFor="let v of vehicles">
+        <div class="card h-100 shadow-sm">
+          <img [src]="v.imageUrl" class="card-img-top" alt="Vehicle Image" style="height: 180px; object-fit: cover;">
+          <div class="card-body">
+            <h5 class="card-title">{{ v.brand }} {{ v.model }}</h5>
+            <p class="card-text">Type: {{ v.type }}</p>
+            <p class="card-text">₹{{ v.pricePerDay }} / day</p>
+            
+            <button 
+  [routerLink]="['/book', v.id]" 
+  [queryParams]="{ startDate: startDate, endDate: endDate }"
+  [disabled]="!v.available">
+  Book Now
+</button>
+
+          </div>
+        </div>
       </div>
     </div>
   </div>
+
+  <ng-template #noResults>
+    <p class="text-muted mt-3" *ngIf="startDate && endDate">No vehicles available for selected date range.</p>
+  </ng-template>
 </div>

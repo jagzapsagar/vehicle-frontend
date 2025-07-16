@@ -47,6 +47,11 @@ addVehicle(vehicle: any): Observable<any> {
   return this.http.post('http://localhost:8082/vehicles', vehicle);
 }
 
+getAvailableVehiclesByDateRange(start: string, end: string): Observable<any[]> {
+  const url = `http://localhost:8082/vehicles/availablebydate?startDate=${start}&endDate=${end}`;
+  return this.http.get<any[]>(url);
+}
+
 
   // Add other methods as needed (create, update, delete)
 }
